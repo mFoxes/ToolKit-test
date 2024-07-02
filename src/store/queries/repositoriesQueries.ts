@@ -28,23 +28,5 @@ export const repositoriesQueries = {
                 }
             }
         }
-    `,
-    GET_REPOSITORY_INFO: gql`
-        query ($login: String!, $name: String!) {
-            repositoryOwner(login: $login) {
-                id
-                avatarUrl
-                url
-                repository(name: $name) {
-                    description
-                    languages(first: 100) {
-                        nodes {
-                            id
-                            name
-                        }
-                    }
-                }
-            }
-        }
     `
 };

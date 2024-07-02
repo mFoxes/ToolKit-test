@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Layout } from '../components/layout/layout';
 import { Main } from '../pages/main/main';
 import { RequireAuthProvider } from '../components/requireAuthProvider/requireAuthProvider';
+import { RepositoryInfo } from '../pages/repositoryInfo/repositoryInfo';
 
 export const router = createBrowserRouter([
     {
@@ -18,11 +19,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/repository/:login/:name',
-                element: <>test2</>
-            },
-            {
-                path: '/unauthorized',
-                element: <>unauthorized</>
+                element: <RepositoryInfo />
             }
         ]
     }

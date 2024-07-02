@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ContentContainer } from '../contentContainer/contentContainer';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
     const userLogin = useAppSelector((state) => state.user.login);
@@ -9,7 +10,7 @@ export const Header = () => {
         <HeaderWrapper>
             <ContentContainer>
                 <ContentWrapper>
-                    <Title>GitHub Repositories</Title>
+                    <TitleLink to={'/'}>GitHub Repositories</TitleLink>
                     <Login>{userLogin}</Login>
                 </ContentWrapper>
             </ContentContainer>
@@ -20,7 +21,7 @@ export const Header = () => {
 const HeaderWrapper = styled.div`
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 80px;
     width: 100%;
     background-color: ${(props) => props.theme.colors.lightBlack};
 `;
@@ -28,16 +29,18 @@ const HeaderWrapper = styled.div`
 const ContentWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 40px;
 `;
 
-const Title = styled.div`
+const TitleLink = styled(Link)`
     color: ${(props) => props.theme.colors.white};
     background-color: ${(props) => props.theme.colors.lightBlack};
-    font-size: 24px;
+    text-decoration: none;
+    font-size: 32px;
 `;
 
 const Login = styled.div`
     color: ${(props) => props.theme.colors.white};
-    font-size: 16px;
+    font-size: 18px;
 `;

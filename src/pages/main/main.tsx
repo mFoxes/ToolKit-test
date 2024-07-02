@@ -15,7 +15,6 @@ export const Main = () => {
     const dispatch = useAppDispatch();
 
     const login = useAppSelector((state) => state.user.login);
-    console.log('login', login);
     const isLoading = useAppSelector((state) => state.repositories.isLoading);
 
     const handleSubmit = (value: string) => {

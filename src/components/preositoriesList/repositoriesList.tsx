@@ -6,17 +6,23 @@ import styled from 'styled-components';
 export const RepositoriesList = () => {
     const repositories = useAppSelector((state) => state.repositories.repositories);
     return (
-        <Container>
-            {repositories.map((rep) => (
-                <RepositoryCard key={rep.id} data={rep} />
-            ))}
-        </Container>
+        <Wrapper>
+            <Container>
+                {repositories.map((rep) => (
+                    <RepositoryCard key={rep.id} data={rep} />
+                ))}
+            </Container>
+        </Wrapper>
     );
 };
+
+const Wrapper = styled.div`
+    height: 100%;
+`;
 
 const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
-    flex: 1 1 100%;
     gap: 20px 20px;
+    align-items: flex-start;
 `;

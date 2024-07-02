@@ -6,6 +6,10 @@ export interface EdgesDto<T> {
     edges: T[];
 }
 
+export interface NodesDto<T> {
+    nodes: T[];
+}
+
 export interface NodeDto<T> {
     node: T;
 }

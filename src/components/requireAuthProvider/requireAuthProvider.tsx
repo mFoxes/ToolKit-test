@@ -13,7 +13,7 @@ export const RequireAuthProvider = ({ children, ...props }: RequireAuthProvider)
     }
 
     if (isAuthorized === AuthorizedState.Unauthorized) {
-        return <Navigate to={{ pathname: '/unauthorized' }} replace />;
+        return <>Проверьте Access Token в .env файле</>;
     }
 
     return <>{children}</>;

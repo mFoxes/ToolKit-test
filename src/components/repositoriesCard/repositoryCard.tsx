@@ -22,11 +22,13 @@ export const RepositoryCard = ({ data, ...props }: RepositoryCardProps) => {
                 </Stars>
             </TopContainer>
             <LastCommit>
-                {data.commits.length && (
+                {data.commits.length ? (
                     <>
                         Дата последнего коммита:{' '}
                         {moment(new Date(data.commits[0].committedDate)).format('DD.MM.YYYY')}
                     </>
+                ) : (
+                    'Коммитов нет'
                 )}
             </LastCommit>
             <UrlWrapper>
@@ -59,16 +61,16 @@ const TopContainer = styled.div`
 const TitleLink = styled(Link)`
     color: ${(props) => props.theme.colors.lightBlack};
     text-decoration: none;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 800;
 `;
 
 const Stars = styled.div`
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     gap: 4px;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 100%;
     svg {
         height: 20px;
