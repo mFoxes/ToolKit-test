@@ -1,12 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { PageWrapper } from '../components/pageWrapper/pageWrapper';
 
 export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <></>
-  },
-  {
-    path: '/:id',
-    element: <></>
-  }
+    {
+        element: <PageWrapper />,
+        children: [
+            {
+                path: '/',
+                element: <>test1</>
+            },
+            {
+                path: '/repository/:id',
+                element: <>test2</>
+            }
+        ]
+    }
 ]);
