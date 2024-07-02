@@ -8,6 +8,10 @@ interface RequireAuthProvider extends HTMLProps<HTMLDivElement> {}
 export const RequireAuthProvider = ({ children, ...props }: RequireAuthProvider) => {
     const isAuthorized = useAppSelector((state) => state.user.isAuthorized);
 
+    if (isAuthorized === AuthorizedState.Empty) {
+        return <></>;
+    }
+
     if (isAuthorized === AuthorizedState.Unauthorized) {
         return <Navigate to={{ pathname: '/unauthorized' }} replace />;
     }

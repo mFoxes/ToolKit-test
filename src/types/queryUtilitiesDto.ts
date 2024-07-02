@@ -25,3 +25,11 @@ export interface HistoryDto<T> {
 export interface ViewerDto<T> {
     viewer: T;
 }
+
+export interface RepositoryOwnerDto<T> {
+    repositoryOwner: T;
+}
+
+export interface RepositoriesDto<T> {
+    repositories: T;
+}

@@ -1,34 +1,28 @@
 import { gql } from '@apollo/client';
+import { REPOSITORY_FRAGMENT } from './fragments/RepositoryFragment';
 
 export const repositoriesQueries = {
     GET_REPOSITORIES_BY_QUERY: gql`
+        ${REPOSITORY_FRAGMENT}
         query getRepositoryByQuery($query: String!, $after: String) {
             search(query: $query, type: REPOSITORY, first: 10, after: $after) {
                 repositoryCount
                 edges {
                     node {
-                        ... on Repository {
-                            id
-                            url
-                            name
-                            owner {
-                                login
-                            }
-                            stargazerCount
-                            defaultBranchRef {
-                                target {
-                                    ... on Commit {
-                                        history(first: 1) {
-                                            edges {
-                                                node {
-                                                    id
-                                                    committedDate
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                        ...RepositoryFragment
+                    }
+                }
+            }
+        }
+    `,
+    GET_REPOSITORIES_BY_USER: gql`
+        ${REPOSITORY_FRAGMENT}
+        query ($login: String!, $after: String) {
+            repositoryOwner(login: $login) {
+                repositories(first: 10, after: $after) {
+                    edges {
+                        node {
+                            ...RepositoryFragment
                         }
                     }
                 }

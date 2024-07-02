@@ -4,6 +4,8 @@ import {
     EdgesDto,
     HistoryDto,
     NodeDto,
+    RepositoriesDto,
+    RepositoryOwnerDto,
     SearchDto,
     TargetDto
 } from '../queryUtilitiesDto';
@@ -14,6 +16,17 @@ export type RepositoriesByQueryQueriesDto = SearchDto<
         NodeDto<
             Omit<RepositoryDto, 'commits'> &
                 DefaultBranchRefDto<TargetDto<HistoryDto<EdgesDto<NodeDto<CommitDto>>>>>
+        >
+    >
+>;
+
+export type UserRepositoriesQueriesDto = RepositoryOwnerDto<
+    RepositoriesDto<
+        EdgesDto<
+            NodeDto<
+                Omit<RepositoryDto, 'commits'> &
+                    DefaultBranchRefDto<TargetDto<HistoryDto<EdgesDto<NodeDto<CommitDto>>>>>
+            >
         >
     >
 >;

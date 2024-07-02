@@ -5,20 +5,34 @@ import { Search } from '../../components/search/search';
 import { LoadingState } from '../../constants/lodaingState';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { getRepositoriesByName, setInitialState } from '../../store/slices/repositoriesSlice';
+import {
+    getRepositoriesByName,
+    getUserRepositories,
+    setInitialState
+} from '../../store/slices/repositoriesSlice';
 
 export const Main = () => {
     const dispatch = useAppDispatch();
 
+    const login = useAppSelector((state) => state.user.login);
+    console.log('login', login);
     const isLoading = useAppSelector((state) => state.repositories.isLoading);
 
     const handleSubmit = (value: string) => {
+        loadData(value);
+    };
+
+    const loadData = async (value = '') => {
+        await dispatch(setInitialState());
         if (value !== '') {
             dispatch(getRepositoriesByName({ name: value }));
+        } else {
+            dispatch(getUserRepositories({ login }));
         }
     };
 
     useEffect(() => {
+        loadData();
         return () => {
             dispatch(setInitialState());
         };

@@ -8,22 +8,29 @@ interface SearchProps {
 }
 
 export const Search = ({ onSubmit, ...props }: SearchProps) => {
-    const [value, setValue] = useState('');
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
-    };
-
-    const handleClick = () => {
-        onSubmit && onSubmit(value);
+    const handleFormSubmit = (data: { searchValue: string }) => {
+        onSubmit && onSubmit(data.searchValue);
     };
 
     return (
         <Container>
-            <StyledInput value={value} onChange={handleChange} placeholder="Поиск..." />
-            <StyledButton onClick={handleClick}>
-                <SearchSvg />
-            </StyledButton>
+            <Formik var initialValues={{ searchValue: '' }} onSubmit={handleFormSubmit}>
+                {({ values, handleChange, handleSubmit }) => (
+                    <form onSubmit={handleSubmit}>
+                        <FormikContent>
+                            <StyledInput
+                                name="searchValue"
+                                value={values.searchValue}
+                                onChange={handleChange}
+                                placeholder="Поиск..."
+                            />
+                            <StyledButton type="submit">
+                                <SearchSvg />
+                            </StyledButton>
+                        </FormikContent>
+                    </form>
+                )}
+            </Formik>
         </Container>
     );
 };
@@ -32,6 +39,10 @@ const Container = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
+`;
+
+const FormikContent = styled.div`
+    display: flex;
 `;
 
 const StyledInput = styled.input`

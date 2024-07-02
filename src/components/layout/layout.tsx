@@ -6,9 +6,13 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { getUserData } from '../../store/slices/userSlice';
 import { ContentContainer } from '../contentContainer/contentContainer';
 import { Header } from '../header/header';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { LoadingState } from '../../constants/lodaingState';
 
 export const Layout = () => {
     const dispatch = useAppDispatch();
+
+    const isLoading = useAppSelector((state) => state.user.isLoading);
 
     if (process.env.NODE_ENV === 'development') {
         loadDevMessages();
@@ -23,7 +27,7 @@ export const Layout = () => {
         <LayoutWrapper>
             <Header />
             <ContentContainer fullHeight>
-                <Outlet />
+                {isLoading === LoadingState.Pending ? <>Loading</> : <Outlet />}
             </ContentContainer>
         </LayoutWrapper>
     );

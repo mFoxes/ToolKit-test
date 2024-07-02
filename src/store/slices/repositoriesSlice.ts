@@ -1,9 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { LoadingState } from '../../constants/lodaingState';
 import { repositoriesService } from '../services/repositoriesService';
-import { RepositoriesByQueryQueriesDto } from '../../types/queries/repositoriesQueriesDto';
+import {
+    RepositoriesByQueryQueriesDto,
+    UserRepositoriesQueriesDto
+} from '../../types/queries/repositoriesQueriesDto';
 import { RepositoryDto } from '../../types/repositoryDto';
 import { formatRepositoriesByQueryResponse } from '../../helpers/formatRepositoriesByQueryResponse';
+import { formatUserRepositoriesResponse } from '../../helpers/formatUserRepositoriesResponse';
 
 const sliceName = 'repositories';
 
@@ -33,6 +37,20 @@ export const getRepositoriesByName = createAsyncThunk<
     }
 });
 
+export const getUserRepositories = createAsyncThunk<
+    UserRepositoriesQueriesDto,
+    { login: string; after?: string }
+>(`${sliceName}/getUserRepositories`, async (params, thunkAPI) => {
+    try {
+        const { login, after } = params;
+        const response = await repositoriesService.getUserRepositories(login, after);
+        console.log('response', response);
+        return response.data;
+    } catch (err) {
+        return thunkAPI.rejectWithValue(err);
+    }
+});
+
 export const repositoriesSlice = createSlice({
     name: sliceName,
     initialState,
@@ -51,6 +69,18 @@ export const repositoriesSlice = createSlice({
             state.isLoading = LoadingState.Fulfilled;
         });
         builder.addCase(getRepositoriesByName.rejected, (state) => {
+            state.isLoading = LoadingState.Rejected;
+        });
+
+        builder.addCase(getUserRepositories.pending, (state) => {
+            state.isLoading = LoadingState.Pending;
+        });
+        builder.addCase(getUserRepositories.fulfilled, (state, action) => {
+            const copyPayload = JSON.parse(JSON.stringify(action.payload));
+            state.repositories = formatUserRepositoriesResponse(copyPayload);
+            state.isLoading = LoadingState.Fulfilled;
+        });
+        builder.addCase(getUserRepositories.rejected, (state) => {
             state.isLoading = LoadingState.Rejected;
         });
     }
