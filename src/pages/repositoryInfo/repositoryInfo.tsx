@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { getRepositoryInfo, setInitialState } from '../../store/slices/repositoryInfoSlice';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import styled from 'styled-components';
 import moment from 'moment';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
 import { ReactComponent as RepositoryStarSvg } from '../../assets/svg/repository-star.svg';
 import { LoadingState } from '../../constants/lodaingState';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { getRepositoryInfo, setInitialState } from '../../store/slices/repositoryInfoSlice';
 
 export const RepositoryInfo = () => {
     const dispatch = useAppDispatch();

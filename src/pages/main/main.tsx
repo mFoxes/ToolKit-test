@@ -5,11 +5,7 @@ import { Search } from '../../components/search/search';
 import { LoadingState } from '../../constants/lodaingState';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import {
-    getRepositoriesByName,
-    getUserRepositories,
-    setInitialState
-} from '../../store/slices/repositoriesSlice';
+import { getRepositoriesByName, setInitialState } from '../../store/slices/repositoriesSlice';
 
 export const Main = () => {
     const dispatch = useAppDispatch();
@@ -23,11 +19,7 @@ export const Main = () => {
 
     const loadData = async (value = '') => {
         await dispatch(setInitialState());
-        if (value !== '') {
-            dispatch(getRepositoriesByName({ name: value }));
-        } else {
-            dispatch(getUserRepositories({ login }));
-        }
+        dispatch(getRepositoriesByName({ name: value, login }));
     };
 
     useEffect(() => {

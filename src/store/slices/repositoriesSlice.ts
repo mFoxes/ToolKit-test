@@ -1,13 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { LoadingState } from '../../constants/lodaingState';
-import { repositoriesService } from '../services/repositoriesService';
-import {
-    RepositoriesByQueryQueriesDto,
-    UserRepositoriesQueriesDto
-} from '../../types/queries/repositoriesQueriesDto';
-import { RepositoryDto } from '../../types/repositoryDto';
 import { formatRepositoriesByQueryResponse } from '../../helpers/formatRepositoriesByQueryResponse';
-import { formatUserRepositoriesResponse } from '../../helpers/formatUserRepositoriesResponse';
+import { RepositoriesByQueryQueriesDto } from '../../types/queries/repositoriesQueriesDto';
+import { RepositoryDto } from '../../types/repositoryDto';
+import { repositoriesService } from '../services/repositoriesService';
 
 const sliceName = 'repositories';
 
@@ -25,25 +21,12 @@ const initialState: InitialState = {
 
 export const getRepositoriesByName = createAsyncThunk<
     RepositoriesByQueryQueriesDto,
-    { name: string; after?: string }
+    { name: string; login: string; after?: string }
 >(`${sliceName}/getRepositoriesByName`, async (params, thunkAPI) => {
     try {
-        const { name, after } = params;
-        const response = await repositoriesService.getRepositoriesByName(name, after);
-        console.log('response', response);
-        return response.data;
-    } catch (err) {
-        return thunkAPI.rejectWithValue(err);
-    }
-});
-
-export const getUserRepositories = createAsyncThunk<
-    UserRepositoriesQueriesDto,
-    { login: string; after?: string }
->(`${sliceName}/getUserRepositories`, async (params, thunkAPI) => {
-    try {
-        const { login, after } = params;
-        const response = await repositoriesService.getUserRepositories(login, after);
+        const { name, login, after } = params;
+        const query = name ? `${name} in:name` : login;
+        const response = await repositoriesService.getRepositoriesByName(query, after);
         console.log('response', response);
         return response.data;
     } catch (err) {
@@ -69,18 +52,6 @@ export const repositoriesSlice = createSlice({
             state.isLoading = LoadingState.Fulfilled;
         });
         builder.addCase(getRepositoriesByName.rejected, (state) => {
-            state.isLoading = LoadingState.Rejected;
-        });
-
-        builder.addCase(getUserRepositories.pending, (state) => {
-            state.isLoading = LoadingState.Pending;
-        });
-        builder.addCase(getUserRepositories.fulfilled, (state, action) => {
-            const copyPayload = JSON.parse(JSON.stringify(action.payload));
-            state.repositories = formatUserRepositoriesResponse(copyPayload);
-            state.isLoading = LoadingState.Fulfilled;
-        });
-        builder.addCase(getUserRepositories.rejected, (state) => {
             state.isLoading = LoadingState.Rejected;
         });
     }

@@ -14,19 +14,5 @@ export const repositoriesQueries = {
                 }
             }
         }
-    `,
-    GET_REPOSITORIES_BY_USER: gql`
-        ${REPOSITORY_FRAGMENT}
-        query ($login: String!, $after: String) {
-            repositoryOwner(login: $login) {
-                repositories(first: 10, after: $after) {
-                    edges {
-                        node {
-                            ...RepositoryFragment
-                        }
-                    }
-                }
-            }
-        }
     `
 };

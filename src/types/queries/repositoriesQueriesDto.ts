@@ -19,14 +19,3 @@ export type RepositoriesByQueryQueriesDto = SearchDto<
         >
     >
 >;
-
-export type UserRepositoriesQueriesDto = RepositoryOwnerDto<
-    RepositoriesDto<
-        EdgesDto<
-            NodeDto<
-                Omit<RepositoryDto, 'commits'> &
-                    DefaultBranchRefDto<TargetDto<HistoryDto<EdgesDto<NodeDto<CommitDto>>>>>
-            >
-        >
-    >
->;
