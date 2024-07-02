@@ -8,7 +8,9 @@ interface ContentContainerProps extends HTMLAttributes<HTMLDivElement> {
 export const ContentContainer = ({ children, fullHeight, ...props }: ContentContainerProps) => {
     return (
         <Wrapper $fullHeight={fullHeight}>
-            <Container>{children}</Container>
+            <Container>
+                <Content>{children}</Content>
+            </Container>
         </Wrapper>
     );
 };
@@ -22,8 +24,13 @@ const Wrapper = styled.div<{ $fullHeight?: boolean }>`
 `;
 
 const Container = styled.div`
+    display: flex;
     flex: 1 1 100%;
-    padding: 0 20px;
     width: 100%;
     max-width: 1200px;
+`;
+
+const Content = styled.div`
+    flex: 1 1 100%;
+    padding: 0 20px;
 `;

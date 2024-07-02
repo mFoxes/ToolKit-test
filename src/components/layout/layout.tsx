@@ -33,7 +33,8 @@ const LayoutWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    min-height: 100vh;
+    min-height: calc(100vh - 30px);
     height: 100%;
     width: 100%;
+    padding-bottom: 30px;
 `;

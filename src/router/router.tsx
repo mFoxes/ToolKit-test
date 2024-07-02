@@ -1,17 +1,28 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { PageWrapper } from '../components/pageWrapper/pageWrapper';
+import { Layout } from '../components/layout/layout';
+import { Main } from '../pages/main/main';
+import { RequireAuthProvider } from '../components/requireAuthProvider/requireAuthProvider';
 
 export const router = createBrowserRouter([
     {
-        element: <PageWrapper />,
+        path: '/',
+        element: <Layout />,
         children: [
             {
-                path: '/',
-                element: <>test1</>
+                index: true,
+                element: (
+                    <RequireAuthProvider>
+                        <Main />
+                    </RequireAuthProvider>
+                )
             },
             {
-                path: '/repository/:id',
+                path: '/repository/:login/:name',
                 element: <>test2</>
+            },
+            {
+                path: '/unauthorized',
+                element: <>unauthorized</>
             }
         ]
     }

@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { userService } from '../services/userService';
 import { LoadingState } from '../../constants/lodaingState';
-import { ViewerData } from '../../types/viewerData';
-import { UserData } from '../../types/userData';
 import { AuthorizedState } from '../../constants/authorizedState';
+import { UserQueriesDto } from '../../types/queries/userQueriesDto';
 
 const sliceName = 'user';
 
@@ -19,7 +18,7 @@ const initialState: InitialState = {
     isLoading: LoadingState.Empty
 };
 
-export const getUserData = createAsyncThunk<ViewerData<UserData>>(
+export const getUserData = createAsyncThunk<UserQueriesDto>(
     `${sliceName}/getUserData`,
     async (_, thunkAPI) => {
         try {
@@ -27,7 +26,7 @@ export const getUserData = createAsyncThunk<ViewerData<UserData>>(
             console.log('response', response);
             return response.data;
         } catch (err) {
-            return thunkAPI.rejectWithValue('Unauthorized');
+            return thunkAPI.rejectWithValue(err);
         }
     }
 );

@@ -5,6 +5,7 @@ import repositoriesReducer from './slices/repositoriesSlice';
 export const store = configureStore({
     reducer: {
         user: userReducer,
+        repositories: repositoriesReducer
     }
 });
 
