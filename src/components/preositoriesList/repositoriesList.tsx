@@ -5,12 +5,16 @@ import styled from 'styled-components';
 
 export const RepositoriesList = () => {
     const repositories = useAppSelector((state) => state.repositories.repositories);
+    const currentPage = useAppSelector((state) => state.repositories.currentPage);
+
     return (
         <Wrapper>
             <Container>
-                {repositories.map((rep) => (
-                    <RepositoryCard key={rep.id} data={rep} />
-                ))}
+                {repositories
+                    .filter((_, indx) => currentPage * 10 <= indx && indx < (currentPage + 1) * 10)
+                    .map((rep) => (
+                        <RepositoryCard key={rep.id} data={rep} />
+                    ))}
             </Container>
         </Wrapper>
     );

@@ -1,11 +1,10 @@
-import React, { HTMLProps } from 'react';
-import { useAppSelector } from '../../hooks/useAppSelector';
+import { HTMLProps } from 'react';
 import { AuthorizedState } from '../../constants/authorizedState';
-import { Navigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
-interface RequireAuthProvider extends HTMLProps<HTMLDivElement> {}
+interface RequireAuthProviderProps extends HTMLProps<HTMLDivElement> {}
 
-export const RequireAuthProvider = ({ children, ...props }: RequireAuthProvider) => {
+export const RequireAuthProvider = ({ children, ...props }: RequireAuthProviderProps) => {
     const isAuthorized = useAppSelector((state) => state.user.isAuthorized);
 
     if (isAuthorized === AuthorizedState.Empty) {

@@ -23,7 +23,6 @@ export const getUserData = createAsyncThunk<UserQueriesDto>(
     async (_, thunkAPI) => {
         try {
             const response = await userService.getUserData();
-            console.log('response', response);
             return response.data;
         } catch (err) {
             return thunkAPI.rejectWithValue(err);

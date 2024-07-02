@@ -16,11 +16,6 @@ export const RepositoryInfo = () => {
     const repositoryInfo = useAppSelector((state) => state.repositoryInfo.repositoryInfo);
     const isLoading = useAppSelector((state) => state.repositoryInfo.isLoading);
 
-    console.log('params', params);
-    console.log('ownerInfo', ownerInfo);
-    console.log('repositoryInfo', repositoryInfo);
-    console.log('isLoading', isLoading);
-
     useEffect(() => {
         if (params.login && params.name) {
             dispatch(getRepositoryInfo({ login: params.login, name: params.name }));

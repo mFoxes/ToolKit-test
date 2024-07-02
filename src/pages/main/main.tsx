@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { RepositoriesList } from '../../components/preositoriesList/repositoriesList';
+import { RepositoriesPagination } from '../../components/repositoriesPagination/repositoriesPagination';
 import { Search } from '../../components/search/search';
 import { LoadingState } from '../../constants/lodaingState';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -37,7 +38,7 @@ export const Main = () => {
             ) : (
                 <>
                     <RepositoriesList />
-                    <div>paginator</div>
+                    <RepositoriesPagination />
                 </>
             )}
         </MainWrapper>

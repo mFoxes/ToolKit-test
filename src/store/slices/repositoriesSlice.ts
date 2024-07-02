@@ -9,12 +9,14 @@ const sliceName = 'repositories';
 
 interface InitialState {
     repositories: RepositoryDto[];
+    currentPage: number;
 
     isLoading: LoadingState;
 }
 
 const initialState: InitialState = {
     repositories: [],
+    currentPage: 0,
 
     isLoading: LoadingState.Empty
 };
@@ -27,7 +29,6 @@ export const getRepositoriesByName = createAsyncThunk<
         const { name, login, after } = params;
         const query = name ? `${name} in:name` : login;
         const response = await repositoriesService.getRepositoriesByName(query, after);
-        console.log('response', response);
         return response.data;
     } catch (err) {
         return thunkAPI.rejectWithValue(err);
@@ -40,6 +41,9 @@ export const repositoriesSlice = createSlice({
     reducers: {
         setInitialState: () => {
             return initialState;
+        },
+        setRepositoriesCurrentPage: (state, action) => {
+            state.currentPage = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -57,5 +61,5 @@ export const repositoriesSlice = createSlice({
     }
 });
 
-export const { setInitialState } = repositoriesSlice.actions;
+export const { setInitialState, setRepositoriesCurrentPage } = repositoriesSlice.actions;
 export default repositoriesSlice.reducer;

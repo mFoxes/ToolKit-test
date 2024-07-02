@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-import React, { ChangeEventHandler, useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as SearchSvg } from '../../assets/svg/search.svg';
 

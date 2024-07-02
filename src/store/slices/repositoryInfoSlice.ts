@@ -29,7 +29,6 @@ export const getRepositoryInfo = createAsyncThunk<
     try {
         const { login, name } = params;
         const response = await repositoryInfoService.getRepositoryInfo(login, name);
-        console.log('response', response);
         return response.data;
     } catch (err) {
         return thunkAPI.rejectWithValue(err);

@@ -1,7 +1,6 @@
 import { CommitDto } from '../types/commitData';
 import { LanguageDto } from '../types/languagesDto';
 import { OwnerInfoDto } from '../types/ownerInfoDto';
-import { RepositoriesByQueryQueriesDto } from '../types/queries/repositoriesQueriesDto';
 import { RepositoryInfoQueriesDto } from '../types/queries/repositoryQueriesDto';
 import { RepositoryInfoDto } from '../types/repositoryInfoDto';
 
