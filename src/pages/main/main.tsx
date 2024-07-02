@@ -1,22 +1,40 @@
-import styled from 'styled-components';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useEffect } from 'react';
-import { getRepositoriesByName } from '../../store/slices/repositoriesSlice';
-import { useAppSelector } from '../../hooks/useAppSelector';
+import styled from 'styled-components';
 import { RepositoriesList } from '../../components/preositoriesList/repositoriesList';
+import { Search } from '../../components/search/search';
+import { LoadingState } from '../../constants/lodaingState';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { getRepositoriesByName, setInitialState } from '../../store/slices/repositoriesSlice';
 
 export const Main = () => {
     const dispatch = useAppDispatch();
 
+    const isLoading = useAppSelector((state) => state.repositories.isLoading);
+
+    const handleSubmit = (value: string) => {
+        if (value !== '') {
+            dispatch(getRepositoriesByName({ name: value }));
+        }
+    };
+
     useEffect(() => {
-        dispatch(getRepositoriesByName({ name: '' }));
+        return () => {
+            dispatch(setInitialState());
+        };
     }, []);
 
     return (
         <MainWrapper>
-            <div>search</div>
-            <RepositoriesList />
-            <PaginatorWrapper>paginator</PaginatorWrapper>
+            <Search onSubmit={handleSubmit} />
+            {isLoading === LoadingState.Pending ? (
+                <>Loading...</>
+            ) : (
+                <>
+                    <RepositoriesList />
+                    <div>paginator</div>
+                </>
+            )}
         </MainWrapper>
     );
 };
@@ -26,8 +44,4 @@ const MainWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-`;
-
-const PaginatorWrapper = styled.div`
-    margin-top: auto;
 `;

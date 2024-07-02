@@ -9,11 +9,13 @@ const sliceName = 'repositories';
 
 interface InitialState {
     repositories: RepositoryDto[];
+
     isLoading: LoadingState;
 }
 
 const initialState: InitialState = {
     repositories: [],
+
     isLoading: LoadingState.Empty
 };
 
