@@ -45,7 +45,6 @@ export const repositoriesSlice = createSlice({
             return initialState;
         },
         setRepositoriesCurrentPage: (state, action) => {
-            console.log('action.payload', action.payload);
             state.currentPage = action.payload;
         }
     },

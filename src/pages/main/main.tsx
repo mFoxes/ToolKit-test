@@ -23,10 +23,8 @@ export const Main = () => {
     const isLoading = useAppSelector((state) => state.repositories.isLoading);
 
     const handleSubmit = (value: string) => {
-        console.log('test');
         searchParams.delete('page');
         setSearchParams(searchParams);
-        console.log('2', value);
         loadData(value);
     };
 
@@ -36,7 +34,6 @@ export const Main = () => {
             setSearchParams(searchParams);
         }
         if (value) {
-            console.log('set');
             searchParams.set('query', value);
             setSearchParams(searchParams);
         }
