@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { REPOSITORY_FRAGMENT } from '../../../shared/queries/fragments/RepositoryFragment';
+import { REPOSITORY_FRAGMENT } from '../../../shared';
 
 export const repositoryInfoQueries = {
     GET_REPOSITORY_INFO: gql`

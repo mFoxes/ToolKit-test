@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { LoadingState } from '../../shared/constants/lodaingState';
-import { RepositoriesList } from './features/repositoriesList/repositoriesList';
-import { RepositoriesPagination } from './features/repositoriesPagination/repositoriesPagination';
-import { Search } from '../../shared/ui/search/search';
+import { LoadingState, Search } from '../../shared';
+import { RepositoriesList, RepositoriesPagination } from './features';
 import {
     $isRepositoriesLoading,
     getRepositoriesByName,
@@ -12,7 +10,7 @@ import {
     setRepositoriesCurrentPage
 } from './models/repositoriesListModel';
 import { useUnit } from 'effector-react';
-import { $login } from '../layout/models/layoutPageModel';
+import { $login } from '../layout';
 
 export const HomePage = () => {
     const [searchParams, setSearchParams] = useSearchParams();

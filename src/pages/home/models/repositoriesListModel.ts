@@ -1,10 +1,9 @@
-import { Unit, createEffect, createStore } from 'effector';
+import { createEffect, createStore } from 'effector';
 import { RepositoriesByQueryQueriesDto } from '../types/queries/repositoriesQueriesDto';
 import { repositoriesService } from '../api/repositoriesService';
-import { RepositoriesDto } from '../../../shared/types/queryUtilitiesDto';
 import { RepositoryDto } from '../types/repositoryDto';
 import { formatRepositoriesByQueryResponse } from '../helpers/formatRepositoriesByQueryResponse';
-import { LoadingState } from '../../../shared/constants/lodaingState';
+import { LoadingState } from '../../../shared';
 
 export const getRepositoriesByName = createEffect<
     { name: string; login: string },

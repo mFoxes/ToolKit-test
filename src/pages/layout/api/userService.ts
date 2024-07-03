@@ -1,4 +1,4 @@
-import { apolloClient } from '../../../shared/api/apolloClient';
+import { apolloClient } from '../../../shared';
 import { userQueries } from '../queries/userQueries';
 
 export const userService = {

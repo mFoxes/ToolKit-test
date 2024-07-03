@@ -1,4 +1,4 @@
-import { apolloClient } from '../../../shared/api/apolloClient';
+import { apolloClient } from '../../../shared';
 import { repositoriesQueries } from '../queries/repositoriesQueries';
 import { RepositoriesByQueryQueriesDto } from '../types/queries/repositoriesQueriesDto';
 

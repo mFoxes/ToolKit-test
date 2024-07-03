@@ -6,7 +6,7 @@ import {
     NodeDto,
     SearchDto,
     TargetDto
-} from '../../../../shared/types/queryUtilitiesDto';
+} from '../../../../shared';
 import { RepositoryDto } from '../repositoryDto';
 
 export type RepositoriesByQueryQueriesDto = SearchDto<

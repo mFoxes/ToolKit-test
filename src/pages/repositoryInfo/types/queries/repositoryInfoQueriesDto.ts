@@ -9,7 +9,7 @@ import {
     HistoryDto,
     EdgesDto,
     NodeDto
-} from '../../../../shared/types/queryUtilitiesDto';
+} from '../../../../shared';
 import { RepositoryInfoDto } from '../repositoryInfoDto';
 
 export type RepositoryInfoQueriesDto = RepositoryOwnerDto<

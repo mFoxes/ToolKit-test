@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ContentContainer } from '../contentContainer/contentContainer';
 import React from 'react';
 import { useUnit } from 'effector-react';
-import { $login } from '../../../pages/layout/models/layoutPageModel';
+import { $login } from '../../../pages/layout';
 
 export const Header = () => {
     const login = useUnit($login);

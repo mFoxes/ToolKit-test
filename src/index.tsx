@@ -6,7 +6,7 @@ import './app/styles/reset.css';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './app/theme/theme';
 import { ApolloProvider } from '@apollo/client';
-import { apolloClient } from './shared/api/apolloClient';
+import { apolloClient } from './shared';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

@@ -1,4 +1,4 @@
-import { apolloClient } from '../../../shared/api/apolloClient';
+import { apolloClient } from '../../../shared';
 import { repositoryInfoQueries } from '../../repositoryInfo/queries/repositoryInfoQueries';
 import { RepositoryInfoQueriesDto } from '../../repositoryInfo/types/queries/repositoryInfoQueriesDto';
 

@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Pagination } from '../../../../shared/ui/pagination/pagination';
+import { Pagination } from '../../../../shared';
 import React from 'react';
 import { useUnit } from 'effector-react';
 import {

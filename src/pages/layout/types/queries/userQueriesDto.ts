@@ -1,4 +1,4 @@
-import { ViewerDto } from '../../../../shared/types/queryUtilitiesDto';
+import { ViewerDto } from '../../../../shared';
 import { UserDto } from '../userDto';
 
 export type UserQueriesDto = ViewerDto<UserDto>;
