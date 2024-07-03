@@ -1,7 +1,6 @@
-import React from 'react';
+import styled from 'styled-components';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { RepositoryCard } from '../repositoriesCard/repositoryCard';
-import styled from 'styled-components';
 
 export const RepositoriesList = () => {
     const repositories = useAppSelector((state) => state.repositories.repositories);

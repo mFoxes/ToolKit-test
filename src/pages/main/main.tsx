@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { RepositoriesList } from '../../components/preositoriesList/repositoriesList';
 import { RepositoriesPagination } from '../../components/repositoriesPagination/repositoriesPagination';
@@ -11,7 +12,6 @@ import {
     setInitialState,
     setRepositoriesCurrentPage
 } from '../../store/slices/repositoriesSlice';
-import { useLocation, useSearchParams } from 'react-router-dom';
 
 export const Main = () => {
     const dispatch = useAppDispatch();

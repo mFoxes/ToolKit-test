@@ -15,7 +15,6 @@ export const RepositoriesPagination = () => {
     const handleChange = (currentPage: number) => {
         searchParams.set('page', currentPage.toString());
         setSearchParams(searchParams);
-        console.log('currentPage', currentPage);
         dispatch(setRepositoriesCurrentPage(currentPage));
     };
 
