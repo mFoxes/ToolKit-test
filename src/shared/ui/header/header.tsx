@@ -4,6 +4,7 @@ import { ContentContainer } from '../contentContainer/contentContainer';
 import React from 'react';
 import { useUnit } from 'effector-react';
 import { $login } from '../../../pages/layout';
+import { routesNameService } from '../../';
 
 export const Header = () => {
     const login = useUnit($login);
@@ -12,7 +13,7 @@ export const Header = () => {
         <HeaderWrapper>
             <ContentContainer>
                 <ContentWrapper>
-                    <TitleLink to={'/'}>GitHub Repositories</TitleLink>
+                    <TitleLink to={routesNameService.homePage}>GitHub Repositories</TitleLink>
                     <Login>{login}</Login>
                 </ContentWrapper>
             </ContentContainer>

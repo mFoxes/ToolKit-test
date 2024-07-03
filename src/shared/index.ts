@@ -1,3 +1,5 @@
+export { routesNameService } from './services/routesNameService';
+
 export { apolloClient } from './api/apolloClient';
 export { LoadingState } from './constants/loadingState';
 export { REPOSITORY_FRAGMENT } from './queries/fragments/repositoryFragment';

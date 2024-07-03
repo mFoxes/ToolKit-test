@@ -4,6 +4,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { ReactComponent as RepositoryStarSvg } from '../../../../shared/assets/svg/repository-star.svg';
 import { RepositoryDto } from '../../types/repositoryDto';
+import { routesNameService } from '../../../../shared';
 
 interface RepositoryCardProps {
     data: RepositoryDto;
@@ -13,7 +14,8 @@ export const RepositoryCard = ({ data }: RepositoryCardProps) => {
     return (
         <Container>
             <TopContainer>
-                <TitleLink to={`/repository/${data.owner.login}/${data.name}`}>
+                <TitleLink
+                    to={routesNameService.getRepositoryInfoPage(data.owner.login, data.name)}>
                     {data.name}
                 </TitleLink>
                 <Stars>
