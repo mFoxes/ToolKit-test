@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { LoadingState } from '../../shared';
+import { LoadingState } from '../../entities';
 import { ReactComponent as RepositoryStarSvg } from '../../shared/assets/svg/repository-star.svg';
 import { useUnit } from 'effector-react';
 import {

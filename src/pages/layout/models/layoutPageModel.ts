@@ -1,6 +1,5 @@
 import { createEffect, createStore } from 'effector';
-import { AuthorizedState } from '../../../entities/constants/authorizedState';
-import { LoadingState } from '../../../shared';
+import { LoadingState, AuthorizedState } from '../../../entities';
 import { userService } from '../api/userService';
 import { UserQueriesDto } from '../types/queries/userQueriesDto';
 

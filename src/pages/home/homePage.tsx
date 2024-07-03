@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { LoadingState, Search } from '../../shared';
+import { LoadingState } from '../../entities';
+import { Search } from '../../shared';
 import { RepositoriesList, RepositoriesPagination } from './features';
 import {
     $isRepositoriesLoading,

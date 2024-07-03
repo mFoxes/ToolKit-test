@@ -1,4 +1,4 @@
-import { LanguageDto } from '../../../entities/types/languagesDto';
+import { LanguageDto } from '../../../entities';
 import { RepositoryDto } from '../../home';
 
 export interface RepositoryInfoDto extends RepositoryDto {

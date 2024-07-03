@@ -3,7 +3,7 @@ import { RepositoriesByQueryQueriesDto } from '../types/queries/repositoriesQuer
 import { repositoriesService } from '../api/repositoriesService';
 import { RepositoryDto } from '../types/repositoryDto';
 import { formatRepositoriesByQueryResponse } from '../helpers/formatRepositoriesByQueryResponse';
-import { LoadingState } from '../../../shared';
+import { LoadingState } from '../../../entities';
 
 export const getRepositoriesByName = createEffect<
     { name: string; login: string },

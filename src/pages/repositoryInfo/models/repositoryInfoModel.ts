@@ -1,9 +1,8 @@
 import { createEffect, createStore } from 'effector';
 import { RepositoryInfoQueriesDto } from '../types/queries/repositoryInfoQueriesDto';
 import { repositoryInfoService } from '../api/repositoryInfoService';
-import { LoadingState } from '../../../shared';
+import { LoadingState, OwnerInfoDto } from '../../../entities';
 import { RepositoryInfoDto } from '../types/repositoryInfoDto';
-import { OwnerInfoDto } from '../../../entities/types/ownerInfoDto';
 import { formatRepositoryInfoResponse } from '../helpers/formatRepositoryInfoResponse';
 
 export const getRepositoryInfo = createEffect<

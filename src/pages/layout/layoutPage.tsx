@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-import { LoadingState, ContentContainer, Header } from '../../shared';
+import { LoadingState } from '../../entities';
+import { ContentContainer, Header } from '../../shared';
 import { useUnit } from 'effector-react';
 import { $isUserDataLoading, getUserData } from './models/layoutPageModel';
 

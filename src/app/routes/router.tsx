@@ -20,7 +20,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/repository/:login/:name',
-                element: <RepositoryInfoPage />
+                element: (
+                    <RequireAuthProvider>
+                        <RepositoryInfoPage />
+                    </RequireAuthProvider>
+                )
             }
         ]
     }

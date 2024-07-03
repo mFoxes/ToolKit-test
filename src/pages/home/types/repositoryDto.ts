@@ -1,5 +1,4 @@
-import { CommitDto } from '../../../entities/types/commitDto';
-import { OwnerDto } from '../../../entities/types/ownerDto';
+import { CommitDto, OwnerDto } from '../../../entities';
 
 export interface RepositoryDto {
     id: string;

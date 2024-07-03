@@ -1,4 +1,4 @@
-import { CommitDto } from '../../../../entities/types/commitDto';
+import { CommitDto } from '../../../../entities';
 import {
     DefaultBranchRefDto,
     EdgesDto,

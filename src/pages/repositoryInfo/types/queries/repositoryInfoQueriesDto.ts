@@ -1,6 +1,4 @@
-import { CommitDto } from '../../../../entities/types/commitDto';
-import { LanguageDto } from '../../../../entities/types/languagesDto';
-import { OwnerInfoDto } from '../../../../entities/types/ownerInfoDto';
+import { CommitDto, LanguageDto, OwnerInfoDto } from '../../../../entities';
 import {
     RepositoryOwnerDto,
     NodesDto,
