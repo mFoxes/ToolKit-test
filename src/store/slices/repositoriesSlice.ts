@@ -9,6 +9,7 @@ const sliceName = 'repositories';
 
 interface InitialState {
     repositories: RepositoryDto[];
+    repositoryCount: number;
     currentPage: number;
 
     isLoading: LoadingState;
@@ -16,6 +17,7 @@ interface InitialState {
 
 const initialState: InitialState = {
     repositories: [],
+    repositoryCount: 0,
     currentPage: 0,
 
     isLoading: LoadingState.Empty
@@ -43,16 +45,19 @@ export const repositoriesSlice = createSlice({
             return initialState;
         },
         setRepositoriesCurrentPage: (state, action) => {
+            console.log('action.payload', action.payload);
             state.currentPage = action.payload;
         }
     },
     extraReducers: (builder) => {
         builder.addCase(getRepositoriesByName.pending, (state) => {
+            state.repositories = [];
             state.isLoading = LoadingState.Pending;
         });
         builder.addCase(getRepositoriesByName.fulfilled, (state, action) => {
             const copyPayload = JSON.parse(JSON.stringify(action.payload));
             state.repositories = formatRepositoriesByQueryResponse(copyPayload);
+            state.repositoryCount = action.payload.search.repositoryCount;
             state.isLoading = LoadingState.Fulfilled;
         });
         builder.addCase(getRepositoriesByName.rejected, (state) => {

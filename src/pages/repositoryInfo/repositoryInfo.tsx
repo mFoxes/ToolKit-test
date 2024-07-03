@@ -69,7 +69,7 @@ export const RepositoryInfo = () => {
                     Языки:
                     <LanguageList>
                         {repositoryInfo?.languages.map((lang) => (
-                            <LanguageItem>{lang.name}</LanguageItem>
+                            <LanguageItem key={lang.id}>{lang.name}</LanguageItem>
                         ))}
                     </LanguageList>
                 </LanguageContainer>

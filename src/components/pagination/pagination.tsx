@@ -2,15 +2,21 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 interface PaginationProps {
-    pageCount: number;
+    itemsPerPage: number;
     currentPage: number;
+    itemsCount: number;
     onChange?: (currentPage: number) => void;
 }
 
-export const Pagination = ({ pageCount, currentPage, onChange }: PaginationProps) => {
+export const Pagination = ({
+    itemsPerPage,
+    currentPage,
+    itemsCount,
+    onChange
+}: PaginationProps) => {
     const getPaginationArray = () => {
         const res = [];
-        for (let i = 0; i < pageCount; i++) {
+        for (let i = 0; i < Math.min(10, Math.ceil(itemsCount / itemsPerPage)); i++) {
             res.push(i);
         }
 

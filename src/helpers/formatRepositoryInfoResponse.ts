@@ -30,13 +30,14 @@ export const formatRepositoryInfoResponse = (
                     name: node.name
                 }) as LanguageDto
         ),
-        commits: repository.defaultBranchRef.target.history.edges.map(
-            ({ node }) =>
-                ({
-                    id: node.id,
-                    committedDate: node.committedDate
-                }) as CommitDto
-        )
+        commits:
+            repository.defaultBranchRef?.target?.history.edges.map(
+                ({ node }) =>
+                    ({
+                        id: node.id,
+                        committedDate: node.committedDate
+                    }) as CommitDto
+            ) ?? []
     } as RepositoryInfoDto;
     return [ownerInfo, repositoryInfo];
 };

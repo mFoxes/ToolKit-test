@@ -1,35 +1,38 @@
-import { Formik } from 'formik';
+import { Formik, useFormik } from 'formik';
 import styled from 'styled-components';
 import { ReactComponent as SearchSvg } from '../../assets/svg/search.svg';
+import { useEffect } from 'react';
 
 interface SearchProps {
+    currentSearchValue?: string;
     onSubmit?: (value: string) => void;
 }
 
-export const Search = ({ onSubmit, ...props }: SearchProps) => {
+export const Search = ({ currentSearchValue, onSubmit, ...props }: SearchProps) => {
     const handleFormSubmit = (data: { searchValue: string }) => {
         onSubmit && onSubmit(data.searchValue);
     };
+    const formik = useFormik({ initialValues: { searchValue: '' }, onSubmit: handleFormSubmit });
+
+    useEffect(() => {
+        formik.setFieldValue('searchValue', currentSearchValue);
+    }, [currentSearchValue]);
 
     return (
         <Container>
-            <Formik var initialValues={{ searchValue: '' }} onSubmit={handleFormSubmit}>
-                {({ values, handleChange, handleSubmit }) => (
-                    <form onSubmit={handleSubmit}>
-                        <FormikContent>
-                            <StyledInput
-                                name="searchValue"
-                                value={values.searchValue}
-                                onChange={handleChange}
-                                placeholder="Поиск..."
-                            />
-                            <StyledButton type="submit">
-                                <SearchSvg />
-                            </StyledButton>
-                        </FormikContent>
-                    </form>
-                )}
-            </Formik>
+            <form onSubmit={formik.handleSubmit}>
+                <FormikContent>
+                    <StyledInput
+                        name="searchValue"
+                        value={formik.values.searchValue}
+                        onChange={formik.handleChange}
+                        placeholder="Поиск..."
+                    />
+                    <StyledButton type="submit">
+                        <SearchSvg />
+                    </StyledButton>
+                </FormikContent>
+            </form>
         </Container>
     );
 };

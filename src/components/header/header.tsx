@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { ContentContainer } from '../contentContainer/contentContainer';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { ContentContainer } from '../contentContainer/contentContainer';
 
 export const Header = () => {
     const userLogin = useAppSelector((state) => state.user.login);

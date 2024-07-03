@@ -7,6 +7,10 @@ export const RepositoriesList = () => {
     const repositories = useAppSelector((state) => state.repositories.repositories);
     const currentPage = useAppSelector((state) => state.repositories.currentPage);
 
+    if (!repositories.length) {
+        return <NotFoundContainer>Ничего не найдено</NotFoundContainer>;
+    }
+
     return (
         <Wrapper>
             <Container>
@@ -29,4 +33,9 @@ const Container = styled.div`
     flex-wrap: wrap;
     gap: 20px 20px;
     align-items: flex-start;
+`;
+
+const NotFoundContainer = styled.div`
+    display: flex;
+    justify-content: center;
 `;
