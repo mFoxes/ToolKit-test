@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ContentContainer } from '../contentContainer/contentContainer';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import React from 'react';
+import { useUnit } from 'effector-react';
+import { $login } from '../../../pages/layout/models/layoutPageModel';
 
 export const Header = () => {
-    const userLogin = useAppSelector((state) => state.user.login);
+    const login = useUnit($login);
 
     return (
         <HeaderWrapper>
             <ContentContainer>
                 <ContentWrapper>
                     <TitleLink to={'/'}>GitHub Repositories</TitleLink>
-                    <Login>{userLogin}</Login>
+                    <Login>{login}</Login>
                 </ContentWrapper>
             </ContentContainer>
         </HeaderWrapper>

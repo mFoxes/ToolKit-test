@@ -1,20 +1,17 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-import { LoadingState } from '../../../shared/constants/lodaingState';
-import { ContentContainer } from '../../../shared/ui/contentContainer/contentContainer';
-import { Header } from '../../../shared/ui/header/header';
-import { useAppDispatch } from '../../../shared/hooks/useAppDispatch';
-import { useAppSelector } from '../../../shared/hooks/useAppSelector';
-import { getUserData } from '../store/userSlice';
+import { LoadingState } from '../../shared/constants/lodaingState';
+import { ContentContainer } from '../../shared/ui/contentContainer/contentContainer';
+import { Header } from '../../shared/ui/header/header';
+import { useUnit } from 'effector-react';
+import { $isUserDataLoading, getUserData } from './models/layoutPageModel';
 
 export const LayoutPage = () => {
-    const dispatch = useAppDispatch();
-
-    const isLoading = useAppSelector((state) => state.user.isLoading);
+    const isLoading = useUnit($isUserDataLoading);
 
     useEffect(() => {
-        dispatch(getUserData());
+        getUserData();
     }, []);
 
     return (

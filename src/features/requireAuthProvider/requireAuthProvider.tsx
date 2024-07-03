@@ -1,11 +1,12 @@
 import React, { HTMLProps } from 'react';
 import { AuthorizedState } from '../../entities/constants/authorizedState';
-import { useAppSelector } from '../../shared/hooks/useAppSelector';
+import { useUnit } from 'effector-react';
+import { $isAuthorized } from '../../pages/layout/models/layoutPageModel';
 
 interface RequireAuthProviderProps extends HTMLProps<HTMLDivElement> {}
 
 export const RequireAuthProvider = ({ children }: RequireAuthProviderProps) => {
-    const isAuthorized = useAppSelector((state) => state.user.isAuthorized);
+    const isAuthorized = useUnit($isAuthorized);
 
     if (isAuthorized === AuthorizedState.Empty) {
         return <></>;

@@ -1,1 +1,1 @@
-export { LayoutPage } from './ui/layoutPage';
+export { LayoutPage } from './layoutPage';

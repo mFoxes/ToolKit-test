@@ -2,29 +2,33 @@ import moment from 'moment';
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { LoadingState } from '../../../shared/constants/lodaingState';
-import { useAppDispatch } from '../../../shared/hooks/useAppDispatch';
-import { useAppSelector } from '../../../shared/hooks/useAppSelector';
-import { ReactComponent as RepositoryStarSvg } from '../../../shared/assets/svg/repository-star.svg';
-import { getRepositoryInfo, setInitialState } from '../store/repositoryInfoSlice';
+import { LoadingState } from '../../shared/constants/lodaingState';
+import { ReactComponent as RepositoryStarSvg } from '../../shared/assets/svg/repository-star.svg';
+import { useUnit } from 'effector-react';
+import {
+    $isRepositoryInfoLoading,
+    $ownerInfo,
+    $repositoryInfo,
+    getRepositoryInfo,
+    resetRepositoryInfoState
+} from './models/repositoryInfoModel';
 
 export const RepositoryInfoPage = () => {
-    const dispatch = useAppDispatch();
     const params = useParams();
 
-    const ownerInfo = useAppSelector((state) => state.repositoryInfo.ownerInfo);
-    const repositoryInfo = useAppSelector((state) => state.repositoryInfo.repositoryInfo);
-    const isLoading = useAppSelector((state) => state.repositoryInfo.isLoading);
+    const ownerInfo = useUnit($ownerInfo);
+    const repositoryInfo = useUnit($repositoryInfo);
+    const isLoading = useUnit($isRepositoryInfoLoading);
 
     useEffect(() => {
         if (params.login && params.name) {
-            dispatch(getRepositoryInfo({ login: params.login, name: params.name }));
+            getRepositoryInfo({ login: params.login, name: params.name });
         }
 
         return () => {
-            dispatch(setInitialState());
+            resetRepositoryInfoState();
         };
-    }, []);
+    }, [params.login, params.name]);
 
     if (isLoading === LoadingState.Pending) {
         return <>Loading...</>;

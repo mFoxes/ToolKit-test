@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import React from 'react';
-import { useAppSelector } from '../../../../shared/hooks/useAppSelector';
-import { RepositoryCard } from './repositoryCard';
+import { useUnit } from 'effector-react';
+import { $currentRepositoriesPage, $repositoriesContent } from '../../models/repositoriesListModel';
+import { RepositoryCard } from '../repositoriesCard/repositoryCard';
 
 export const RepositoriesList = () => {
-    const repositories = useAppSelector((state) => state.repositories.repositories);
-    const currentPage = useAppSelector((state) => state.repositories.currentPage);
+    const repositories = useUnit($repositoriesContent);
+    const currentPage = useUnit($currentRepositoriesPage);
 
     if (!repositories.length) {
         return <NotFoundContainer>Ничего не найдено</NotFoundContainer>;

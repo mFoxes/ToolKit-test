@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { LoadingState } from '../../../shared/constants/lodaingState';
-import { useAppDispatch } from '../../../shared/hooks/useAppDispatch';
-import { useAppSelector } from '../../../shared/hooks/useAppSelector';
-import { RepositoriesList } from './components/repositoriesList';
-import { RepositoriesPagination } from './components/repositoriesPagination';
+import { LoadingState } from '../../shared/constants/lodaingState';
+import { RepositoriesList } from './features/repositoriesList/repositoriesList';
+import { RepositoriesPagination } from './features/repositoriesPagination/repositoriesPagination';
+import { Search } from '../../shared/ui/search/search';
 import {
+    $isRepositoriesLoading,
     getRepositoriesByName,
-    setRepositoriesCurrentPage,
-    setInitialState
-} from '../store/repositoriesSlice';
-import { Search } from '../../../shared/ui/search/search';
+    resetRepositoriesState,
+    setRepositoriesCurrentPage
+} from './models/repositoriesListModel';
+import { useUnit } from 'effector-react';
+import { $login } from '../layout/models/layoutPageModel';
 
 export const HomePage = () => {
-    const dispatch = useAppDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
     const searchParamsQuery = searchParams.get('query') ?? '';
     const searchParamsPage = searchParams.get('page');
 
-    const login = useAppSelector((state) => state.user.login);
-    const isLoading = useAppSelector((state) => state.repositories.isLoading);
+    const login = useUnit($login);
+    const isLoading = useUnit($isRepositoriesLoading);
 
     const handleSubmit = (value: string) => {
         searchParams.delete('page');
@@ -37,25 +37,25 @@ export const HomePage = () => {
             searchParams.set('query', value);
             setSearchParams(searchParams);
         }
-        dispatch(getRepositoriesByName({ name: value, login }));
+        getRepositoriesByName({ name: value, login });
     };
 
     useEffect(() => {
         const preparePage = async () => {
             if (searchParamsPage !== null) {
-                await dispatch(setRepositoriesCurrentPage(parseInt(searchParamsPage)));
+                await setRepositoriesCurrentPage(parseInt(searchParamsPage));
             }
             loadData(searchParamsQuery);
         };
         preparePage();
         return () => {
-            dispatch(setInitialState());
+            resetRepositoriesState();
         };
     }, []);
 
     useEffect(() => {
         const preparePage = async () => {
-            await dispatch(setRepositoriesCurrentPage(0));
+            await setRepositoriesCurrentPage(0);
             loadData();
         };
         if (searchParamsQuery === '' && !searchParamsPage) {

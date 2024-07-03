@@ -1,22 +1,24 @@
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Pagination } from '../../../../shared/ui/pagination/pagination';
-import { useAppDispatch } from '../../../../shared/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../shared/hooks/useAppSelector';
-import { setRepositoriesCurrentPage } from '../../store/repositoriesSlice';
 import React from 'react';
+import { useUnit } from 'effector-react';
+import {
+    $currentRepositoriesPage,
+    $repositoryCount,
+    setRepositoriesCurrentPage
+} from '../../models/repositoriesListModel';
 
 export const RepositoriesPagination = () => {
-    const dispatch = useAppDispatch();
-    const repositoryCount = useAppSelector((state) => state.repositories.repositoryCount);
-    const currentPage = useAppSelector((state) => state.repositories.currentPage);
+    const repositoryCount = useUnit($repositoryCount);
+    const currentPage = useUnit($currentRepositoriesPage);
 
     const [searchParams, setSearchParams] = useSearchParams();
 
     const handleChange = (currentPage: number) => {
         searchParams.set('page', currentPage.toString());
         setSearchParams(searchParams);
-        dispatch(setRepositoriesCurrentPage(currentPage));
+        setRepositoriesCurrentPage(currentPage);
     };
 
     return (
